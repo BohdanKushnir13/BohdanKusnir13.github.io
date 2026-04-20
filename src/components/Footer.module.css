@@ -1,0 +1,33 @@
+/* src/components/Footer.module.css */
+.footer {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  color: white;
+  padding: 40px 2rem 0;
+  margin-top: auto;
+}
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 1fr;
+  gap: 32px;
+  padding-bottom: 32px;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+.logo span { opacity: 0.75; }
+.brand p { opacity: 0.85; margin: 0; font-size: 0.9rem; }
+.col h4 { margin: 0 0 12px; font-size: 0.85rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
+.col p { margin: 4px 0; font-size: 0.88rem; opacity: 0.9; }
+.col a { color: white; text-decoration: none; opacity: 0.85; display: block; margin: 4px 0; font-size: 0.88rem; transition: opacity 0.2s; }
+.col a:hover { opacity: 1; text-decoration: underline; }
+.bottom { border-top: 1px solid rgba(255,255,255,0.2); text-align: center; padding: 16px 0; font-size: 0.82rem; opacity: 0.7; }
+.bottom p { margin: 0; }
+
+@media (max-width: 900px) { .inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .inner { grid-template-columns: 1fr; gap: 20px; } }

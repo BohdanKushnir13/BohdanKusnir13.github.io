@@ -1,0 +1,146 @@
+.page { display: flex; flex-direction: column; }
+
+.hero {
+  text-align: center;
+  padding: 56px 20px 40px;
+  background: linear-gradient(180deg, var(--green-light) 0%, transparent 100%);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 12px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hero h1 span { color: var(--green-dark); }
+.hero p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
+/* Статистика */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto 48px;
+  padding: 0 20px;
+  width: 100%;
+}
+.statCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1.5px solid rgba(46,204,113,0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: transform var(--transition);
+}
+.statCard:hover { transform: translateY(-4px); }
+.statIcon  { font-size: 1.8rem; }
+.statValue { font-size: 1.6rem; font-weight: 800; color: var(--green-dark); line-height: 1; }
+.statLabel { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+
+/* Про організацію */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 48px;
+  padding: 0 20px;
+  width: 100%;
+}
+.aboutCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid rgba(46,204,113,0.12);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.aboutCard:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.aboutIcon { font-size: 2.2rem; display: block; margin-bottom: 12px; }
+.aboutCard h3 { margin: 0 0 10px; color: var(--text); font-size: 1.05rem; }
+.aboutCard p  { color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 0.93rem; }
+
+/* Команда */
+.teamSection { max-width: 1100px; margin: 0 auto 48px; padding: 0 20px; width: 100%; }
+.teamSection h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text); margin-bottom: 24px; }
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+.teamCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  border: 1.5px solid rgba(46,204,113,0.1);
+  transition: transform var(--transition);
+}
+.teamCard:hover { transform: translateY(-3px); }
+.teamAvatar { font-size: 2.8rem; margin-bottom: 12px; }
+.teamCard h4 { margin: 0 0 6px; font-size: 1rem; color: var(--text); }
+.teamCard p  { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+
+/* Контакти */
+.contactSection { max-width: 1100px; margin: 0 auto 48px; padding: 0 20px; width: 100%; }
+.contactSection h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text); margin-bottom: 24px; }
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.contactCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--green);
+  font-style: normal;
+}
+.contactCard strong { display: block; font-size: 0.9rem; color: var(--text); margin-bottom: 6px; }
+.contactCard p  { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.contactCard a  { color: var(--green-dark); text-decoration: none; font-weight: 600; }
+.contactCard a:hover { text-decoration: underline; }
+.contactIcon { font-size: 1.4rem; display: block; margin-bottom: 8px; }
+
+/* FAQ */
+.faqSection { max-width: 760px; margin: 0 auto 60px; padding: 0 20px; width: 100%; }
+.faqSection h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--text); margin-bottom: 24px; }
+.faqList { display: flex; flex-direction: column; gap: 8px; }
+.faqItem { background: var(--white); border-radius: var(--radius-sm); box-shadow: var(--shadow); overflow: hidden; }
+.faqQuestion {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  text-align: left;
+  transition: background 0.2s;
+  gap: 12px;
+}
+.faqQuestion:hover { background: var(--green-light); }
+.faqOpen { background: var(--green-light) !important; color: var(--green-dark); }
+.faqArrow { font-size: 0.7rem; flex-shrink: 0; color: var(--green-dark); }
+.faqAnswer {
+  padding: 0 20px 18px;
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  border-top: 1px solid rgba(46,204,113,0.15);
+  animation: cardIn 0.25s ease;
+}

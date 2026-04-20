@@ -1,0 +1,129 @@
+/* src/pages/MyInitiativesPage.module.css */
+
+.page { display: flex; flex-direction: column; min-height: calc(100vh - 64px); }
+
+.hero {
+  text-align: center;
+  padding: 56px 20px 32px;
+  background: linear-gradient(180deg, var(--green-light) 0%, transparent 100%);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 12px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hero h1 span { color: var(--green-dark); }
+.hero p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
+.count {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0 auto 4px;
+  padding: 0 20px;
+}
+
+/* Порожній стан */
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.emptyIcon { font-size: 4rem; }
+.empty h3 { font-size: 1.4rem; color: var(--text); margin: 0; }
+.empty p  { color: var(--text-muted); margin: 0; font-size: 1rem; }
+.goBtn {
+  margin-top: 8px;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.goBtn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 20px 20px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Картка */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid rgba(46,204,113,0.2);
+  animation: cardIn 0.4s ease both;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+
+.badge {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Глобальні класи badge (з index.css) */
+:global(.badge-ecology)   { background: #e8f5e9; color: #2d7a45; }
+:global(.badge-animals)   { background: #fff3e0; color: #e65100; }
+:global(.badge-social)    { background: #e3f2fd; color: #1565c0; }
+:global(.badge-military)  { background: #fce4ec; color: #880e4f; }
+:global(.badge-education) { background: #f3e5f5; color: #6a1b9a; }
+
+.content {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.content h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.meta { display: flex; flex-direction: column; gap: 3px; margin-bottom: 10px; }
+.meta p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+
+.userName { font-size: 0.82rem; color: var(--text-muted); margin: 0 0 8px; font-style: italic; }
+.status   { color: var(--green-dark); font-weight: 700; font-size: 0.88rem; margin: 0 0 8px; }
+.description { font-size: 0.88rem; color: #445544; line-height: 1.5; margin: 0 0 14px; flex: 1; }
+
+.removeBtn {
+  background: #fff0f0;
+  color: #c0392b;
+  border: 1.5px solid #f5c6c6;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  transition: all 0.2s;
+  width: 100%;
+  margin-top: auto;
+}
+.removeBtn:hover { background: #fde8e8; border-color: #e74c3c; }

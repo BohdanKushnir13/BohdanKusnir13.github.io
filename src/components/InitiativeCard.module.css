@@ -1,0 +1,80 @@
+/* src/components/InitiativeCard.module.css */
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid transparent;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  animation: cardIn 0.4s ease both;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(46,204,113,0.25);
+}
+
+/* Бейдж */
+.badge {
+  padding: 6px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.badge_ecology   { background: #e8f5e9; color: #2d7a45; }
+.badge_animals   { background: #fff3e0; color: #e65100; }
+.badge_social    { background: #e3f2fd; color: #1565c0; }
+.badge_military  { background: #fce4ec; color: #880e4f; }
+.badge_education { background: #f3e5f5; color: #6a1b9a; }
+
+/* Обхід для CSS Modules (дефіс → підкреслення) */
+:global(.badge-ecology)   { background: #e8f5e9; color: #2d7a45; }
+:global(.badge-animals)   { background: #fff3e0; color: #e65100; }
+:global(.badge-social)    { background: #e3f2fd; color: #1565c0; }
+:global(.badge-military)  { background: #fce4ec; color: #880e4f; }
+:global(.badge-education) { background: #f3e5f5; color: #6a1b9a; }
+
+.content {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+.meta p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #445544;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.joinedBtn {
+  background: #b0bfb0 !important;
+  cursor: default !important;
+  transform: none !important;
+}

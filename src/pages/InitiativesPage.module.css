@@ -1,0 +1,142 @@
+/* src/pages/InitiativesPage.module.css */
+
+.page { display: flex; flex-direction: column; min-height: calc(100vh - 64px); }
+
+.hero {
+  text-align: center;
+  padding: 56px 20px 32px;
+  background: linear-gradient(180deg, var(--green-light) 0%, transparent 100%);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 12px;
+  line-height: 1.15;
+  color: var(--text);
+}
+.hero h1 span { color: var(--green-dark); }
+.hero p { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
+/* Фільтри */
+.filtersSection { max-width: 1200px; margin: 0 auto 8px; padding: 0 20px; }
+
+.filtersBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(46,204,113,0.12);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 160px;
+}
+.filterGroup label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.filterGroup select {
+  padding: 9px 32px 9px 12px;
+  border: 1.5px solid #d0e8d0;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--bg);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2327ae60' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color 0.2s;
+}
+.filterGroup select:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(46,204,113,0.15); }
+
+.resetBtn {
+  padding: 9px 18px;
+  background: none;
+  border: 1.5px solid #d0e8d0;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+  align-self: flex-end;
+  white-space: nowrap;
+}
+.resetBtn:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tag {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tag button { background: none; border: none; cursor: pointer; color: var(--green-dark); font-size: 0.85rem; padding: 0; }
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 24px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.noResults { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 1.05rem; }
+
+/* Форма пропозиції */
+.proposalSection { max-width: 600px; margin: 0 auto 48px; padding: 0 20px; }
+.formCard {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid rgba(46,204,113,0.15);
+}
+.formCard h3 { margin: 0 0 24px; font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--text); }
+
+.proposedCard {
+  margin-top: 16px;
+  background: var(--green-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  border-left: 4px solid var(--green);
+}
+.proposedCard h4 { margin: 8px 0 6px; color: var(--text); font-size: 0.95rem; }
+.proposedCard p  { margin: 0; color: var(--text-muted); font-size: 0.88rem; }
+.proposedBadge {
+  background: var(--green);
+  color: white;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 640px) {
+  .filtersBar { flex-direction: column; }
+  .filterGroup { min-width: 100%; }
+}
