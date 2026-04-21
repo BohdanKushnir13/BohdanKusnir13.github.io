@@ -89,3 +89,34 @@
   .menu.open { display: flex; }
   .burger { display: block; }
 }
+
+.authBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 16px;
+}
+ 
+.userEmail {
+  font-size: 0.85rem;
+  color: #ccc;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+ 
+.authBtn {
+  background: #4f8ef7;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+ 
+.authBtn:hover {
+  background: #2d6fd6;
+}
