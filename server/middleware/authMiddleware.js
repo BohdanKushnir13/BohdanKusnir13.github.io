@@ -1,19 +1,24 @@
-const jwt = require('jsonwebtoken');
+// server/middleware/authMiddleware.js
+const { admin } = require('../firebaseAdmin');
 
-function verifyToken(req, res, next) {
+async function verifyToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ error: 'Доступ заборонено: токен відсутній' });
+    return res.status(401).json({ error: 'Токен відсутній' });
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    // Верифікуємо Firebase ID токен через Admin SDK
+    const decoded = await admin.auth().verifyIdToken(token);
+    req.user = {
+      uid: decoded.uid,
+      email: decoded.email,
+    };
     next();
   } catch (err) {
-    return res.status(401).json({ error: 'Токен невалідний або прострочений' });
+    return res.status(401).json({ error: 'Токен невалідний' });
   }
 }
 

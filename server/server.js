@@ -6,17 +6,24 @@ const cors    = require('cors');
 const authRoutes          = require('./routes/auth');
 const initiativesRoutes   = require('./routes/initiatives');
 const registrationsRoutes = require('./routes/registrations');
+const ratingsRoutes       = require('./routes/ratings');
 const { verifyToken }     = require('./middleware/authMiddleware');
 
 const app  = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// CORS — має бути ПЕРШИМ
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://volunteerua.netlify.app'],
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://cerulean-brioche-08d9fe.netlify.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 }));
+app.options('*', cors());
 app.use(express.json());
 
 // Логування
@@ -29,8 +36,9 @@ app.use((req, _res, next) => {
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', message: '✅ Сервер працює' });
 });
-app.use('/api/auth',         authRoutes);
-app.use('/api/initiatives',  initiativesRoutes);
+app.use('/api/auth',          authRoutes);
+app.use('/api/initiatives',   initiativesRoutes);
+app.use('/api/ratings',       ratingsRoutes);
 
 // Захищені маршрути
 app.use('/api/registrations', registrationsRoutes);

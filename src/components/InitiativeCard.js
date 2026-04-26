@@ -1,9 +1,6 @@
-// src/components/InitiativeCard.js
-// Компонент картки ініціативи
-// Завдання 3: отримує дані через props, стан читає з Context
-
 import React from 'react';
 import { useVolunteer } from '../context/VolunteerContext';
+import StarRating from './StarRating';
 import styles from './InitiativeCard.module.css';
 
 export default function InitiativeCard({ initiative, onJoin }) {
@@ -14,7 +11,6 @@ export default function InitiativeCard({ initiative, onJoin }) {
 
   return (
     <article className={styles.card}>
-      {/* Бейдж типу активності */}
       <div className={`${styles.badge} ${styles[initiative.badgeClass]}`}>
         {initiative.typeLabel}
       </div>
@@ -27,6 +23,9 @@ export default function InitiativeCard({ initiative, onJoin }) {
           <p>📍 {initiative.location}</p>
           <p>👥 Потрібно: <strong>{remaining}</strong> волонтерів</p>
         </div>
+
+        {/* Зірочки — рейтинг */}
+        <StarRating initiative={initiative} />
 
         <p className={styles.description}>{initiative.description}</p>
 

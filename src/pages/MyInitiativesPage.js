@@ -1,35 +1,49 @@
-// src/pages/MyInitiativesPage.js
-// Сторінка "Мої ініціативи"
-// Завдання 4: маршрут "/my-initiatives"
-// Завдання 3: читає стан з Context
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useVolunteer } from '../context/VolunteerContext';
-import { INITIATIVES } from '../data/initiatives';
+import { getInitiatives } from '../services/firestoreService';
 import styles from './MyInitiativesPage.module.css';
 
 export default function MyInitiativesPage() {
   const { myProjects, leaveInitiative } = useVolunteer();
+  const [allInitiatives, setAllInitiatives] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Збагачуємо дані з Context повними даними з INITIATIVES
+  // Завантажуємо всі ініціативи з Firestore
+  useEffect(() => {
+    getInitiatives().then((data) => {
+      setAllInitiatives(data);
+      setLoading(false);
+    });
+  }, []);
+
+  // Збагачуємо дані з Firestore а не з локального файлу
   const enriched = myProjects
     .map((p) => {
-      const ini = INITIATIVES.find((i) => i.id === p.id);
+      const ini = allInitiatives.find((i) => i.id === p.id);
       return ini ? { ...ini, registeredAt: p.registeredAt, userName: p.userName } : null;
     })
     .filter(Boolean);
 
+  if (loading) {
+    return (
+      <main className={styles.page}>
+        <div className={styles.hero}>
+          <h1>Мої <span>ініціативи</span></h1>
+        </div>
+        <p style={{ textAlign: 'center', margin: '40px' }}>⏳ Завантаження...</p>
+      </main>
+    );
+  }
+
   return (
     <main className={styles.page}>
-      {/* Hero */}
       <div className={styles.hero}>
         <h1>Мої <span>ініціативи</span></h1>
         <p>Проєкти, до яких ви приєдналися</p>
       </div>
 
       {enriched.length === 0 ? (
-        /* Порожній стан */
         <div className={styles.empty}>
           <div className={styles.emptyIcon}>📋</div>
           <h3>Поки що порожньо</h3>
@@ -52,7 +66,6 @@ export default function MyInitiativesPage() {
                 className={styles.card}
                 style={{ animationDelay: `${idx * 0.07}s` }}
               >
-                {/* Бейдж типу */}
                 <div className={`${styles.badge} badge-${ini.type}`}>
                   {ini.typeLabel}
                 </div>
