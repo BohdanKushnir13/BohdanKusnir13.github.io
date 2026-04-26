@@ -1,6 +1,3 @@
-// src/components/SubmitInitiativeModal.js
-// Модалка для подачі нової ініціативи користувачем
-
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { submitInitiativeRequest } from '../services/firestoreService';
@@ -13,6 +10,7 @@ const INITIAL_FORM = {
   location: '',
   date: '',
   type: 'social',
+  volunteers: '',
 };
 
 const TYPES = [
@@ -43,6 +41,8 @@ export default function SubmitInitiativeModal({ onClose }) {
     if (!form.city.trim())        e.city        = 'Вкажіть місто';
     if (!form.location.trim())    e.location    = 'Вкажіть адресу';
     if (!form.date)               e.date        = 'Вкажіть дату';
+    if (!form.volunteers || Number(form.volunteers) <= 0)
+      e.volunteers = 'Вкажіть кількість волонтерів';
     return e;
   };
 
@@ -56,6 +56,7 @@ export default function SubmitInitiativeModal({ onClose }) {
     setSubmitting(true);
     await submitInitiativeRequest({
       ...form,
+      volunteers: Number(form.volunteers),
       authorEmail: currentUser.email,
       authorId: currentUser.uid,
     });
@@ -90,28 +91,32 @@ export default function SubmitInitiativeModal({ onClose }) {
           <div className="form-field">
             <label>Назва ініціативи *</label>
             <input name="title" value={form.title} onChange={handleChange}
-              placeholder="Наприклад: Прибирання парку" className={errors.title ? styles.inputError : ''} />
+              placeholder="Наприклад: Прибирання парку"
+              className={errors.title ? styles.inputError : ''} />
             {errors.title && <span className={styles.errorMsg}>{errors.title}</span>}
           </div>
 
           <div className="form-field">
             <label>Опис *</label>
             <textarea name="description" value={form.description} onChange={handleChange}
-              rows={3} placeholder="Що планується робити?" className={errors.description ? styles.inputError : ''} />
+              rows={3} placeholder="Що планується робити?"
+              className={errors.description ? styles.inputError : ''} />
             {errors.description && <span className={styles.errorMsg}>{errors.description}</span>}
           </div>
 
           <div className="form-field">
             <label>Місто *</label>
             <input name="city" value={form.city} onChange={handleChange}
-              placeholder="Львів" className={errors.city ? styles.inputError : ''} />
+              placeholder="Львів"
+              className={errors.city ? styles.inputError : ''} />
             {errors.city && <span className={styles.errorMsg}>{errors.city}</span>}
           </div>
 
           <div className="form-field">
             <label>Адреса *</label>
             <input name="location" value={form.location} onChange={handleChange}
-              placeholder="вул. Шевченка, 1" className={errors.location ? styles.inputError : ''} />
+              placeholder="вул. Шевченка, 1"
+              className={errors.location ? styles.inputError : ''} />
             {errors.location && <span className={styles.errorMsg}>{errors.location}</span>}
           </div>
 
@@ -120,6 +125,22 @@ export default function SubmitInitiativeModal({ onClose }) {
             <input name="date" type="date" value={form.date} onChange={handleChange}
               className={errors.date ? styles.inputError : ''} />
             {errors.date && <span className={styles.errorMsg}>{errors.date}</span>}
+          </div>
+
+          {/* НОВЕ ПОЛЕ: кількість волонтерів */}
+          <div className="form-field">
+            <label>Кількість волонтерів *</label>
+            <input
+              name="volunteers"
+              type="number"
+              min="1"
+              max="1000"
+              value={form.volunteers}
+              onChange={handleChange}
+              placeholder="Наприклад: 15"
+              className={errors.volunteers ? styles.inputError : ''}
+            />
+            {errors.volunteers && <span className={styles.errorMsg}>{errors.volunteers}</span>}
           </div>
 
           <div className="form-field">

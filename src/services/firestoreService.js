@@ -98,9 +98,7 @@ export async function getPendingRequests() {
     .filter((r) => r.status === 'pending');
 }
  
-// ── ЗАПИС: схвалити заявку → додати як ініціативу ──
 export async function approveInitiative(request) {
-  // Додаємо в колекцію initiatives
   await addDoc(collection(db, 'initiatives'), {
     title: request.title,
     description: request.description,
@@ -109,14 +107,14 @@ export async function approveInitiative(request) {
     date: request.date,
     type: request.type,
     typeLabel: request.type,
-    volunteers: 0,
+    // Беремо volunteers з заявки, або 10 якщо не вказано
+    volunteers: Number(request.volunteers) || 10,
     averageRating: 0,
     ratingsCount: 0,
     dateLabel: request.date,
     badgeClass: `badge-${request.type}`,
   });
- 
-  // Оновлюємо статус заявки
+
   await updateDoc(doc(db, 'requests', request.id), { status: 'approved' });
   console.log('✅ Ініціативу схвалено');
 }
